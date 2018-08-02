@@ -26,7 +26,7 @@
 
 function assert_have_python_and_sympy (pyexec, verbose)
 
-  minsympyver = '1.0';
+  minsympyver = '0.8';
 
   if (nargin < 2)
     verbose = false;
@@ -92,7 +92,7 @@ function assert_have_python_and_sympy (pyexec, verbose)
     fprintf ('Attempting to run %s -c "import sympy; print(sympy.__version__)"\n\n', pyexec);
   end
 
-  [status, output] = system([pyexec ' -c "import sympy; print(sympy.__version__)"']);
+  [status, output] = system([pyexec ' -c "import diofant as sympy; print(sympy.__version__)"']);
   if (verbose)
     status
     output

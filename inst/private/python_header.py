@@ -23,24 +23,25 @@ def echo_exception_stdout(mystr):
     print("</list>\n</output_block>\n")
 
 try:
-    import sympy
-    import sympy as sp
-    from sympy import __version__ as spver
+    import diofant as sympy
+    import diofant as sp
+    import diofant
+    from diofant import __version__ as spver
     # need this to reactivate from srepr
-    from sympy import *
-    import sympy.printing
-    from sympy.logic.boolalg import Boolean, BooleanFunction
-    from sympy.core.relational import Relational
+    from diofant import *
+#   import sympy.printing
+    from diofant.logic.boolalg import Boolean, BooleanFunction
+    from diofant.core.relational import Relational
     # temporary? for piecewise support
-    from sympy.functions.elementary.piecewise import ExprCondPair
-    from sympy.integrals.risch import NonElementaryIntegral
-    from sympy.matrices.expressions.matexpr import MatrixElement
+    from diofant.functions.elementary.piecewise import ExprCondPair
+    from diofant.integrals.risch import NonElementaryIntegral
+    from diofant.matrices.expressions.matexpr import MatrixElement
     # for hypergeometric
-    from sympy.functions.special.hyper import TupleArg
+    from diofant.functions.special.hyper import TupleArg
     # for sets
-    from sympy.sets.fancysets import *
-    from sympy.sets.sets import *
-    from sympy.utilities.iterables import uniq
+    from diofant.sets.fancysets import *
+    from diofant.sets.sets import *
+    from diofant.utilities.iterables import uniq
     import copy
     import binascii
     import struct
@@ -177,7 +178,7 @@ try:
             c = ET.SubElement(et, "list")
             for y in x:
                 octoutput(y, c)
-        elif isinstance(x, sp.compatibility.integer_types):
+        elif isinstance(x, (int,)):
             a = ET.SubElement(et, "item")
             f = ET.SubElement(a, "f")
             f.text = str(OCTCODE_INT)
@@ -198,7 +199,7 @@ try:
             f.text = d2hex(x.real)
             f = ET.SubElement(a, "f")
             f.text = d2hex(x.imag)
-        elif isinstance(x, sp.compatibility.string_types):
+        elif isinstance(x, (str,)):
             a = ET.SubElement(et, "item")
             f = ET.SubElement(a, "f")
             f.text = str(OCTCODE_STR)
