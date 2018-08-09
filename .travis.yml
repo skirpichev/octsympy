@@ -5,19 +5,9 @@ language: generic
 
 matrix:
   include:
-    - env: PYTHON_VERSION=2 PYTAVE=no  SYMPY_VER=1.0   OCT=ppa   DOCTEST=yes COLUMNS=80
-    - env: PYTHON_VERSION=3 PYTAVE=no  SYMPY_VER=1.0   OCT=ppa   DOCTEST=yes COLUMNS=80
-    - env: PYTHON_VERSION=2 PYTAVE=no  SYMPY_VER=1.1.1 OCT=ppa   DOCTEST=yes COLUMNS=80
-    - env: PYTHON_VERSION=3 PYTAVE=no  SYMPY_VER=1.1.1 OCT=ppa   DOCTEST=yes COLUMNS=80
-    - env: PYTHON_VERSION=2 PYTAVE=no  SYMPY_VER=1.2   OCT=ppa   DOCTEST=yes COLUMNS=80
-    - env: PYTHON_VERSION=3 PYTAVE=no  SYMPY_VER=1.2   OCT=ppa   DOCTEST=yes COLUMNS=80
-    - env: PYTHON_VERSION=2 PYTAVE=no  SYMPY_VER=1.2   OCT=daily DOCTEST=no  COLUMNS=80
-    - env: PYTHON_VERSION=3 PYTAVE=no  SYMPY_VER=1.2   OCT=daily DOCTEST=no  COLUMNS=80
-    - env: PYTHON_VERSION=2 PYTAVE=yes SYMPY_VER=1.2   OCT=daily DOCTEST=no  COLUMNS=80
-    - env: PYTHON_VERSION=3 PYTAVE=yes SYMPY_VER=1.2   OCT=daily DOCTEST=no  COLUMNS=80
-  allow_failures:
-    - env: PYTHON_VERSION=2 PYTAVE=yes SYMPY_VER=1.2   OCT=daily DOCTEST=no  COLUMNS=80
-    - env: PYTHON_VERSION=3 PYTAVE=yes SYMPY_VER=1.2   OCT=daily DOCTEST=no  COLUMNS=80
+    - env: PYTHON_VERSION=3 PYTAVE=no  SYMPY_VER=0.9   OCT=ppa   DOCTEST=yes COLUMNS=80
+    - env: PYTHON_VERSION=3 PYTAVE=no  SYMPY_VER=0.9   OCT=daily DOCTEST=no  COLUMNS=80
+    - env: PYTHON_VERSION=3 PYTAVE=yes SYMPY_VER=0.9   OCT=daily DOCTEST=no  COLUMNS=80
 
 # need octave devel pkgs for doctest (has compiled code as of July 2015)
 before_install:
@@ -43,7 +33,7 @@ before_install:
 
 install:
   - export PYTHON="python$PYTHON_VERSION"
-  - pip$PYTHON_VERSION install --user sympy==$SYMPY_VER
+  - pip$PYTHON_VERSION install --user diofant==$SYMPY_VER
   - if [ "x$DOCTEST" = "xyes" ]; then
         mkdir ${HOME}/octave;
         wget https://github.com/catch22/octave-doctest/releases/download/v0.6.1/doctest-0.6.1.tar.gz;
