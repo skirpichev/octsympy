@@ -147,10 +147,10 @@ function s = taylor(f, varargin)
            '    xa[i] = x[i]-a[i]'
            'expn = f.subs(dic)  # first constant term'
            'for i in range(1,n):'
-           '    tmp = S(0)'
+           '    tmp = Integer(0)'
            '    d = list(itertools.product(x, repeat=i))'
            '    for j in d:'
-           '        tmp2 = S(1)'
+           '        tmp2 = Integer(1)'
            '        for p in range(len(x)):'
            '            tmp2 = tmp2*xa[p]**j.count(x[p])'
            '        tmp = tmp + f.diff(*j).subs(dic)*tmp2' %%FIXME: In this case we should use a cache system to avoid

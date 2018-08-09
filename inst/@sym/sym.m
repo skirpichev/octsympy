@@ -481,7 +481,7 @@ function s = sym(x, varargin)
       % Usually want rational output here (i.e., if input was "1.2").
       % But if input has words and parentheses it might be raw Sympy code.
       if (isempty (regexp (x, '\w\(.*\)')))
-        s = python_cmd (['return S("' x '", rational=True)']);
+        s = python_cmd (['return Rational("' x '")']);
         return
       end
 
@@ -497,7 +497,7 @@ function s = sym(x, varargin)
 
         %% Blacklist some strings for which srepr(x) == str(x)
         % Python code for this:
-        % >>> ns = {}; exec('from sympy import *', ns)
+        % >>> ns = {}; exec('from diofant import *', ns)
         % ... for (k, v) in ns.items():
         % ...    if not callable(v) and k not in ['__builtins__', 'C']:
         % ...        if k == srepr(v):
@@ -525,7 +525,7 @@ function s = sym(x, varargin)
 
       cmd = {'x, hint_symfun = _ins'
              'if hint_symfun:'
-             '    from sympy.abc import _clash1'
+             '    from diofant.abc import _clash1'
              '    myclash = {v: Symbol(v) for v in ["ff", "FF"]}'
              '    myclash.update(_clash1)'
              '    #myclash.pop("I", None)'  % remove for SMT compat
